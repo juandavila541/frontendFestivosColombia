@@ -1,0 +1,23 @@
+<mat-toolbar class="barraPrincipal">
+  <button matIconButton (click)="menu.toggle()" aria-label="Menú">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-icon>event</mat-icon>
+  <span>Festivos Colombia</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="contenedor">
+  <mat-sidenav #menu mode="side" opened>
+    <mat-nav-list>
+      @for (opcion of opciones; track opcion.ruta) {
+        <a mat-list-item [routerLink]="opcion.ruta" routerLinkActive="opcionActiva">
+          <mat-icon matListItemIcon>{{ opcion.icono }}</mat-icon>
+          <span matListItemTitle>{{ opcion.titulo }}</span>
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

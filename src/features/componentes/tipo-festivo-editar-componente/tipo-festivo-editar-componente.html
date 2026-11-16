@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ datos.encabezado }}</h2>
+<div mat-dialog-content class="formularioDialogo">
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo</mat-label>
+    <input matInput [(ngModel)]="datos.tipo.tipo" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button matButton="outlined" [mat-dialog-close]="">Cancelar</button>
+  <button matButton="filled" [mat-dialog-close]="datos" [disabled]="!datos.tipo.tipo.trim()">Aceptar</button>
+</div>

@@ -1,0 +1,67 @@
+.campoPais {
+  min-width: 280px;
+}
+
+.secciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.resultado {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.resultado mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.textoResultado {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.esFestivo {
+  background: #c8e6c9;
+  color: #1b5e20;
+}
+
+.tablaFestivos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.tablaFestivos th,
+.tablaFestivos td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tablaFestivos th {
+  color: #616161;
+  font-weight: 500;
+}
+
+.tablaFestivos td:last-child::first-letter,
+.fechaResultado::first-letter {
+  text-transform: uppercase;
+}
+
+.fechaResultado {
+  display: inline-block;
+}
+
+.noFestivo {
+  background: #eeeeee;
+  color: #424242;
+}

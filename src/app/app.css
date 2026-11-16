@@ -1,0 +1,17 @@
+.barraPrincipal {
+  background: #0d3b12;
+  color: white;
+  gap: 8px;
+}
+
+.contenedor {
+  height: calc(100% - 64px);
+}
+
+mat-sidenav {
+  width: 220px;
+}
+
+.opcionActiva {
+  background: rgba(27, 94, 32, 0.15);
+}

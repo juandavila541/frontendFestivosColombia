@@ -1,0 +1,79 @@
+<mat-toolbar class="barraTituloCRUD">
+  <mat-icon>event_available</mat-icon>
+  <span>Validación de Festivos</span>
+</mat-toolbar>
+
+<div class="contenido">
+  <mat-form-field appearance="fill" class="campoPais">
+    <mat-label>País</mat-label>
+    <mat-select [(value)]="idPais">
+      @for (pais of paises(); track pais.id) {
+        <mat-option [value]="pais.id">{{ pais.nombre }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <div class="secciones">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>¿Es festivo?</mat-card-title>
+        <mat-card-subtitle>Escoja una fecha y consulte</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="barraBusqueda">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="calendario" [(ngModel)]="fecha" (keyup.enter)="validar()">
+            <mat-datepicker-toggle matIconSuffix [for]="calendario"></mat-datepicker-toggle>
+            <mat-datepicker #calendario></mat-datepicker>
+          </mat-form-field>
+          <button matButton="filled" (click)="validar()" [disabled]="consultando()">
+            <mat-icon>search</mat-icon>Validar
+          </button>
+        </div>
+
+        @if (resultado(); as r) {
+          <div class="resultado" [class.esFestivo]="r.esFestivo" [class.noFestivo]="!r.esFestivo">
+            <mat-icon>{{ r.esFestivo ? 'celebration' : 'work' }}</mat-icon>
+            <div>
+              <div class="textoResultado">{{ r.esFestivo ? 'Es festivo' : 'No es festivo' }}</div>
+              <div><span class="fechaResultado">{{ r.fecha }}</span> — {{ r.pais }}</div>
+              @if (r.nombreFestivo) {
+                <div><strong>{{ r.nombreFestivo }}</strong></div>
+              }
+            </div>
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Festivos del año</mat-card-title>
+        <mat-card-subtitle>Fechas calculadas de todos los festivos</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="barraBusqueda">
+          <mat-form-field appearance="fill">
+            <mat-label>Año</mat-label>
+            <input matInput type="number" [(ngModel)]="anio" (keyup.enter)="consultarAnio()">
+          </mat-form-field>
+          <button matButton="filled" (click)="consultarAnio()"><mat-icon>calendar_month</mat-icon>Consultar</button>
+        </div>
+
+        @if (festivosAnio().length > 0) {
+          <table class="tablaFestivos">
+            <thead>
+              <tr><th>Festivo</th><th>Fecha</th></tr>
+            </thead>
+            <tbody>
+              @for (item of festivosAnio(); track $index) {
+                <tr><td>{{ item.festivo }}</td><td>{{ item.fecha }}</td></tr>
+              }
+            </tbody>
+          </table>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>{{ datos.encabezado }}</h2>
+<div mat-dialog-content class="formularioDialogo">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="datos.festivo.nombre" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>País</mat-label>
+    <mat-select [(value)]="datos.festivo.idPais">
+      @for (pais of datos.paises; track pais.id) {
+        <mat-option [value]="pais.id">{{ pais.nombre }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de festivo</mat-label>
+    <mat-select [(value)]="datos.festivo.idTipo">
+      @for (tipo of datos.tipos; track tipo.id) {
+        <mat-option [value]="tipo.id">{{ tipo.tipo }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (datos.festivo.idTipo) {
+    @if (usaDiaMes(datos.festivo.idTipo)) {
+      <div class="filaDialogo">
+        <mat-form-field appearance="fill">
+          <mat-label>Día</mat-label>
+          <input matInput type="number" min="1" max="31" [(ngModel)]="datos.festivo.dia">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Mes</mat-label>
+          <mat-select [(value)]="datos.festivo.mes">
+            @for (mes of meses; track mes; let i = $index) {
+              <mat-option [value]="i + 1">{{ mes }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    } @else {
+      <mat-form-field appearance="fill">
+        <mat-label>Días desde el domingo de Pascua</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.festivo.diasPascua">
+        <mat-hint>Negativo si es antes de Pascua (ej. Viernes Santo = -2)</mat-hint>
+      </mat-form-field>
+    }
+  }
+</div>
+<div mat-dialog-actions align="end">
+  <button matButton="outlined" [mat-dialog-close]="">Cancelar</button>
+  <button matButton="filled" [mat-dialog-close]="datos" [disabled]="!esValido()">Aceptar</button>
+</div>

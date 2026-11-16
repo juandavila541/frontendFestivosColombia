@@ -1,0 +1,56 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.barraTituloCRUD {
+  background: #1b5e20;
+  color: #fff;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.contenido {
+  padding: 16px;
+}
+
+.barraBusqueda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.barraAcciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mat-mdc-dialog-content.formularioDialogo {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+
+.filaDialogo {
+  display: flex;
+  gap: 12px;
+}
+
+.filaDialogo mat-form-field {
+  flex: 1;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active,
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover,
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover .datatable-row-group,
+.ngx-datatable.material.single-selection .datatable-body-row.active:focus,
+.ngx-datatable.material.single-selection .datatable-body-row.active:focus .datatable-row-group {
+  background-color: #c8e6c9;
+  color: #000;
+}

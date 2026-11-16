@@ -1,0 +1,26 @@
+<mat-toolbar class="barraTituloCRUD">
+  <mat-icon>public</mat-icon>
+  <span>Países</span>
+</mat-toolbar>
+
+<div class="contenido">
+  <div class="barraBusqueda">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar por nombre</mat-label>
+      <input matInput [ngModel]="textoBusqueda()" (ngModelChange)="textoBusqueda.set($event)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="barraAcciones">
+    <button matButton="filled" (click)="agregar()"><mat-icon>add</mat-icon>Agregar</button>
+    <button matButton="tonal" (click)="modificar()"><mat-icon>edit</mat-icon>Modificar</button>
+    <button matButton="outlined" (click)="eliminar()"><mat-icon>delete</mat-icon>Eliminar</button>
+  </div>
+
+  <ngx-datatable class="material" [rows]="paisesFiltrados()" [columns]="columnas"
+                 [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
+                 [columnMode]="modoColumna.force" [selectionType]="tipoSeleccion.single"
+                 [selected]="seleccion" (selectedChange)="escoger($event)">
+  </ngx-datatable>
+</div>

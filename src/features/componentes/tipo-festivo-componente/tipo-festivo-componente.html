@@ -1,0 +1,18 @@
+<mat-toolbar class="barraTituloCRUD">
+  <mat-icon>category</mat-icon>
+  <span>Tipos de Festivo</span>
+</mat-toolbar>
+
+<div class="contenido">
+  <div class="barraAcciones">
+    <button matButton="filled" (click)="agregar()"><mat-icon>add</mat-icon>Agregar</button>
+    <button matButton="tonal" (click)="modificar()"><mat-icon>edit</mat-icon>Modificar</button>
+    <button matButton="outlined" (click)="eliminar()"><mat-icon>delete</mat-icon>Eliminar</button>
+  </div>
+
+  <ngx-datatable class="material" [rows]="tipos()" [columns]="columnas"
+                 [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
+                 [columnMode]="modoColumna.force" [selectionType]="tipoSeleccion.single"
+                 [selected]="seleccion" (selectedChange)="escoger($event)">
+  </ngx-datatable>
+</div>
